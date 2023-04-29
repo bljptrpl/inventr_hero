@@ -4,25 +4,19 @@
 int RED = 12, 
     GREEN = 11, 
     YELLOW = 10;
-
 //inputs
-int Switch1 = 2, 
-    Switch2 = 3, 
-    Switch3 = 4; 
+int Switch1 = 2; 
+   
 void blink(int LED){
     digitalWrite(LED, HIGH);
     delay(800);
     digitalWrite(LED, LOW);
-
 }
 void setup() {
   //blink all lights once
   blink(RED);
   blink(GREEN);
   blink(YELLOW);
-
-  
-
 }
 
 void loop() {
@@ -38,7 +32,4 @@ void loop() {
       digitalWrite(GREEN, LOW);
       digitalWrite(YELLOW, LOW);
     }
-  
-
-
 }
