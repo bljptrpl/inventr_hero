@@ -24,21 +24,13 @@ void setup() {
 void loop() {
   
     if (digitalRead(Switch1) == HIGH)
-    {
       digitalWrite(RED, HIGH);
+    else digitalWrite(RED, LOW);
+    if(digitalRead(Switch2) == HIGH)
       digitalWrite(GREEN, HIGH);
+    else digitalWrite(GREEN, LOW);
+    if(digitalRead(Switch3) == HIGH)
       digitalWrite(YELLOW, HIGH);
-    }
-    else if(digitalRead(Switch2) == HIGH){
-      digitalWrite(GREEN, HIGH);
-      digitalWrite(YELLOW, HIGH);
-      }
-      else if(digitalRead(Switch3) == HIGH){
-        digitalWrite(YELLOW, HIGH);
-      }
-      else{
-      digitalWrite(RED, LOW);
-      digitalWrite(GREEN, LOW);
-      digitalWrite(YELLOW, LOW);
-    }
-}
+    else digitalWrite(YELLOW, LOW);
+
+}//loop
