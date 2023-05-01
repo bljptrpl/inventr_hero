@@ -5,8 +5,10 @@ int RED = 12,
     GREEN = 11, 
     YELLOW = 10;
 //inputs
-int Switch1 = 2; 
-   
+int Switch1 = 2,
+    Switch2 = 3,
+    Switch3 = 4; 
+  
 void blink(int LED){
     digitalWrite(LED, HIGH);
     delay(800);
@@ -27,7 +29,14 @@ void loop() {
       digitalWrite(GREEN, HIGH);
       digitalWrite(YELLOW, HIGH);
     }
-    else{
+    else if(digitalRead(Switch2) == HIGH){
+      digitalWrite(GREEN, HIGH);
+      digitalWrite(YELLOW, HIGH);
+      }
+      else if(digitalRead(Switch3) == HIGH){
+        digitalWrite(YELLOW, HIGH);
+      }
+      else{
       digitalWrite(RED, LOW);
       digitalWrite(GREEN, LOW);
       digitalWrite(YELLOW, LOW);
