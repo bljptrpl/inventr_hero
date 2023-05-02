@@ -7,8 +7,9 @@ int RED = 12,
 //inputs
 int Switch1 = 2,
     Switch2 = 3,
-    Switch3 = 4; 
-  
+    Switch3 = 4;
+    
+int buzzer = 9;
 void blink(int LED){
     digitalWrite(LED, HIGH);
     delay(800);
@@ -19,6 +20,7 @@ void setup() {
   blink(RED);
   blink(GREEN);
   blink(YELLOW);
+  tone(buzzer, 1000);
 }
 
 void loop() {
@@ -32,5 +34,6 @@ void loop() {
     if(digitalRead(Switch3) == HIGH)
       digitalWrite(YELLOW, HIGH);
     else digitalWrite(YELLOW, LOW);
-
+    
+  tone(buzzer, 200);
 }//loop
