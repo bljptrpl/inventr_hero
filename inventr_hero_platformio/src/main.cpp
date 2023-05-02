@@ -11,7 +11,8 @@ int Switch1 = 2,
     Switch2 = 3,
     Switch3 = 4;
     
-
+int photoresistor = A0; //analog input
+int sensorValue = 0;
 
 void blink(int LED){
     digitalWrite(LED, HIGH);
@@ -23,8 +24,12 @@ void setup() {
   blink(LED1);
   blink(LED2);
   blink(LED3);
-  tone(buzzer, 200, 2000);
-  zeldalul_setup();
+  blink(LED_BUILTIN);
+  tone(buzzer, 200, 500);
+  Serial.begin(9600);
+
+  //zeldalul_setup();
+  
 }
 
 void loop() {
@@ -38,6 +43,12 @@ void loop() {
     if(digitalRead(Switch3) == HIGH)
       digitalWrite(LED3, HIGH);
     else digitalWrite(LED3, LOW);
-    
+  sensorValue = analogRead(photoresistor);
+  Serial.println(sensorValue);
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+
   //tone(buzzer, 200);
 }//loop
