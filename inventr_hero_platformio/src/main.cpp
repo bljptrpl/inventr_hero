@@ -20,6 +20,8 @@ void blink(int LED){
     digitalWrite(LED, LOW);
 }
 void setup() {
+
+  pinMode(LED_BUILTIN, OUTPUT);
   //blink all lights once
   blink(LED1);
   blink(LED2);
@@ -46,9 +48,9 @@ void loop() {
   sensorValue = analogRead(photoresistor);
   Serial.println(sensorValue);
   digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000);
+  delay(sensorValue);
   digitalWrite(LED_BUILTIN, LOW);
-  delay(1000);
+  delay(sensorValue);
 
   //tone(buzzer, 200);
 }//loop
