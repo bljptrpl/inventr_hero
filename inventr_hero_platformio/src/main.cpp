@@ -3,9 +3,9 @@
 #include <zeldaslullaby.cpp>
 
 //outputs
-int RED = 12, 
-    GREEN = 11, 
-    YELLOW = 10;
+int LED1 = 12, 
+    LED2 = 11, 
+    LED3 = 10;
 //inputs
 int Switch1 = 2,
     Switch2 = 3,
@@ -20,25 +20,24 @@ void blink(int LED){
 }
 void setup() {
   //blink all lights once
-  blink(RED);
-  blink(GREEN);
-  blink(YELLOW);
+  blink(LED1);
+  blink(LED2);
+  blink(LED3);
   tone(buzzer, 200, 2000);
-  // greenhill_setup();
   zeldalul_setup();
 }
 
 void loop() {
   
     if (digitalRead(Switch1) == HIGH)
-      digitalWrite(RED, HIGH);
-    else digitalWrite(RED, LOW);
+      digitalWrite(LED1, HIGH);
+    else digitalWrite(LED1, LOW);
     if(digitalRead(Switch2) == HIGH)
-      digitalWrite(GREEN, HIGH);
-    else digitalWrite(GREEN, LOW);
+      digitalWrite(LED2, HIGH);
+    else digitalWrite(LED2, LOW);
     if(digitalRead(Switch3) == HIGH)
-      digitalWrite(YELLOW, HIGH);
-    else digitalWrite(YELLOW, LOW);
+      digitalWrite(LED3, HIGH);
+    else digitalWrite(LED3, LOW);
     
   //tone(buzzer, 200);
 }//loop
