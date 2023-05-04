@@ -1,5 +1,4 @@
 #include <Arduino.h>
-//#include <greenhill.cpp>
 #include <zeldaslullaby.cpp>
 
 //outputs
@@ -10,9 +9,19 @@ int LED1 = 12,
 int Switch1 = 2,
     Switch2 = 3,
     Switch3 = 4;
-    
+
+//day 6 - photoresistor     
 int photoresistor = A0; //analog input
 int sensorValue = 0;
+
+//day 7 - battery operations
+unsigned int batteryCapacity = 50000;
+unsigned int batteryLevel = 0;
+unsigned int ticks = 0;
+unsigned int wait = 100;
+double PercentFull;
+ 
+
 
 void blink(int LED){
     digitalWrite(LED, HIGH);
@@ -34,6 +43,19 @@ void setup() {
   
 }
 
+void PrintBatteryPercentage() {
+// print the elasped time
+  Serial.print(ticks);
+  Serial.print(" ms    charge at ");
+ 
+//  convert the integers to decimal numbers, divide them and print...
+  PercentFull=100*((double)batteryLevel / (double)batteryCapacity);
+  Serial.print(PercentFull);
+ 
+// print a percent character and line return...
+  Serial.println("%");
+}
+
 void loop() {
   
     if (digitalRead(Switch1) == HIGH)
@@ -45,12 +67,24 @@ void loop() {
     if(digitalRead(Switch3) == HIGH)
       digitalWrite(LED3, HIGH);
     else digitalWrite(LED3, LOW);
-  sensorValue = analogRead(photoresistor);
-  Serial.println(sensorValue);
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(sensorValue);
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(sensorValue);
 
-  //tone(buzzer, 200);
+
+  sensorValue = analogRead(photoresistor); // read the value from the sensor:
+  batteryLevel += sensorValue;
+  ticks += wait;
+ 
+  if(batteryLevel >= batteryCapacity) {
+    Serial.print(ticks);
+    Serial.print(" ms     ");
+    Serial.println("FULLY CHARGED");
+    batteryLevel = batteryCapacity; // to prevent integer from continuing to increase
+    ticks = 0;
+    delay(20000);      // long pause
+  }
+  else {
+    PrintBatteryPercentage();
+  }
+ 
+  delay(wait);
+
 }//loop
